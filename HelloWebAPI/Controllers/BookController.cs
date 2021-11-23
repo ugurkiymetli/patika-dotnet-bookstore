@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HelloWebAPI.DbOperations;
 
 namespace HelloWebAPI.Controllers
 {
@@ -10,49 +11,41 @@ namespace HelloWebAPI.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private static List<Book> BookList = new List<Book>()
+        private readonly BookStoreDBContext _context;
+        public BookController( BookStoreDBContext context )
         {
-            //new Book
-            //{
-            //    Id = 1, Title = "BookName1", GenreId = 1, PageCount = 100, PublishDate=new DateTime(2001,12,12)
-            //},
-            //new Book
-            //{
-            //    Id = 2, Title = "BookName2", GenreId = 2, PageCount = 200, PublishDate=new DateTime(2005,3,2)
-            //},
-            //new Book
-            //{
-            //    Id = 3, Title = "BookName3", GenreId = 2, PageCount = 150, PublishDate=new DateTime(1997,11,20)
-            //},
-        };
+            _context = context;
+        }
+
         [HttpGet]
         public List<Book> GetBooks()
         {
-            var bookList = BookList.OrderBy(book => book.Id).ToList<Book>();
+            var bookList = _context.Books.OrderBy(book => book.Id).ToList<Book>();
             return bookList;
         }
 
         [HttpGet("{id}")]
         public Book GetById( int id )
         {
-            var book = BookList.Where(book => book.Id == id).SingleOrDefault();
+            var book = _context.Books.Where(book => book.Id == id).SingleOrDefault();
             return book;
         }
 
         [HttpPost]
         public IActionResult AddBook( [FromBody] Book newBook )
         {
-            var book = BookList.SingleOrDefault(book => book.Title == newBook.Title);
+            var book = _context.Books.SingleOrDefault(book => book.Title == newBook.Title);
             if ( book is not null )
                 return BadRequest();
-            BookList.Add(newBook);
+            _context.Books.Add(newBook);
+            _context.SaveChanges();
             return Ok();
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdateBook( int id, [FromBody] Book updateBook )
         {
-            var book = BookList.SingleOrDefault(book => book.Id == id);
+            var book = _context.Books.SingleOrDefault(book => book.Id == id);
             if ( book is null )
                 return BadRequest();
             //Eğer bodyde data gelmezse (default ise) kendi datasını ekle.
@@ -61,16 +54,18 @@ namespace HelloWebAPI.Controllers
             book.PublishDate = updateBook.PublishDate != default ? updateBook.PublishDate : book.PublishDate;
             book.Title = updateBook.Title != default ? updateBook.Title : book.Title;
 
+            _context.SaveChanges();
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteBook( int id )
         {
-            var book = BookList.SingleOrDefault(book => book.Id == id);
+            var book = _context.Books.SingleOrDefault(book => book.Id == id);
             if ( book is null )
                 return BadRequest();
-            BookList.Remove(book);
+            _context.Books.Remove(book);
+            _context.SaveChanges();
             return Ok();
         }
 

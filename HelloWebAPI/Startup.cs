@@ -34,6 +34,7 @@ namespace HelloWebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HelloWebAPI", Version = "v1" });
             });
+            //Adding DbContext as a service to run on startup
             services.AddDbContext<BookStoreDBContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
 
         }

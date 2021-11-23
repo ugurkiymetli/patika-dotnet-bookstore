@@ -11,8 +11,9 @@ namespace HelloWebAPI.DbOperations
         {
             using ( var context = new BookStoreDBContext(serviceProvider.GetRequiredService<DbContextOptions<BookStoreDBContext>>()) )
             {
+                // Look for any book.
                 if ( context.Books.Any() )
-                    return;
+                    return;// Data was already seeded
                 context.Books.AddRange
                     (
                         new Book
