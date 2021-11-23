@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HelloWebAPI.Controllers
+namespace BookStoreWebAPI.Controllers
 {
     public class Book
     {

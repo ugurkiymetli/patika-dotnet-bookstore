@@ -1,8 +1,8 @@
-﻿using HelloWebAPI.Controllers;
-using HelloWebAPI.DbOperations;
+﻿using BookStoreWebAPI.Controllers;
+using BookStoreWebAPI.DbOperations;
 using System;
 using System.Linq;
-namespace HelloWebAPI.BookOperations.CreateBook
+namespace BookStoreWebAPI.BookOperations.CreateBook
 {
     public class CreateBookCommand
     {
@@ -28,6 +28,5 @@ namespace HelloWebAPI.BookOperations.CreateBook
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();
         }
-
     }
 }

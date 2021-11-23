@@ -12,9 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HelloWebAPI.DbOperations;
+using BookStoreWebAPI.DbOperations;
 
-namespace HelloWebAPI
+namespace BookStoreWebAPI
 {
     public class Startup
     {
@@ -32,7 +32,7 @@ namespace HelloWebAPI
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HelloWebAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookStoreWebAPI", Version = "v1" });
             });
             //Adding DbContext as a service to run on startup
             services.AddDbContext<BookStoreDBContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
@@ -46,7 +46,7 @@ namespace HelloWebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HelloWebAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookStoreWebAPI v1"));
             }
 
             app.UseHttpsRedirection();

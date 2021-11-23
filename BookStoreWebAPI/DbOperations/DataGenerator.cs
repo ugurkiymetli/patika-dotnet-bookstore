@@ -1,9 +1,9 @@
-﻿using HelloWebAPI.Controllers;
+﻿using BookStoreWebAPI.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
-namespace HelloWebAPI.DbOperations
+namespace BookStoreWebAPI.DbOperations
 {
     public class DataGenerator
     {

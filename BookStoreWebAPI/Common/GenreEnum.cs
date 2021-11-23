@@ -1,4 +1,4 @@
-﻿namespace HelloWebAPI.Common
+﻿namespace BookStoreWebAPI.Common
 {
     public enum GenreEnum
     {

@@ -1,4 +1,4 @@
-﻿namespace HelloWebAPI.Controllers
+﻿namespace BookStoreWebAPI.Controllers
 {
     internal class BookStoreDbContext
     {

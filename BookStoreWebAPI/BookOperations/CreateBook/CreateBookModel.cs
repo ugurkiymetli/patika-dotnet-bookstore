@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HelloWebAPI.BookOperations.CreateBook
+namespace BookStoreWebAPI.BookOperations.CreateBook
 {
     public class CreateBookModel
     {

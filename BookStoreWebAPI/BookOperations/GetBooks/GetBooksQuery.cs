@@ -1,10 +1,10 @@
-﻿using HelloWebAPI.Common;
-using HelloWebAPI.Controllers;
-using HelloWebAPI.DbOperations;
+﻿using BookStoreWebAPI.Common;
+using BookStoreWebAPI.Controllers;
+using BookStoreWebAPI.DbOperations;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HelloWebAPI.BookOperations.GetBooks
+namespace BookStoreWebAPI.BookOperations.GetBooks
 {
     public class GetBooksQuery
     {
@@ -13,13 +13,13 @@ namespace HelloWebAPI.BookOperations.GetBooks
         {
             _dbContext = dBContext;
         }
-        public List<BookViewModel> Handle()
+        public List<GetBookViewModel> Handle()
         {
             var bookList = _dbContext.Books.OrderBy(book => book.Id).ToList<Book>();
-            List<BookViewModel> bookViewModel = new List<BookViewModel>();
+            List<GetBookViewModel> bookViewModel = new List<GetBookViewModel>();
             foreach ( var book in bookList )
             {
-                bookViewModel.Add(new BookViewModel()
+                bookViewModel.Add(new GetBookViewModel()
                 {
                     Title = book.Title,
                     Genre = ( ( GenreEnum )book.GenreId ).ToString(),
@@ -30,11 +30,5 @@ namespace HelloWebAPI.BookOperations.GetBooks
             return bookViewModel;
         }
     }
-    public class BookViewModel
-    {
-        public string Title { get; set; }
-        public int PageCount { get; set; }
-        public string PublishDate { get; set; }
-        public string Genre { get; set; }
-    }
+
 }

@@ -1,7 +1,7 @@
-﻿using HelloWebAPI.Controllers;
+﻿using BookStoreWebAPI.Controllers;
 using Microsoft.EntityFrameworkCore;
 
-namespace HelloWebAPI.DbOperations
+namespace BookStoreWebAPI.DbOperations
 {
     public class BookStoreDBContext : DbContext
     {
