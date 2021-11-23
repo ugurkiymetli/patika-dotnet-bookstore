@@ -1,6 +1,6 @@
 ﻿namespace BookStoreWebAPI.BookOperations.GetBooks
 {
-    public class GetBookViewModel
+    public class GetBookModel
     {
         public string Title { get; set; }
         public int PageCount { get; set; }
