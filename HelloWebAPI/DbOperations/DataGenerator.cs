@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-using HelloWebAPI.Controllers;
+﻿using HelloWebAPI.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
 namespace HelloWebAPI.DbOperations
 {
     public class DataGenerator
@@ -18,7 +18,7 @@ namespace HelloWebAPI.DbOperations
                     (
                         new Book
                         {
-                            Id = 1,
+                            //Id = 1,
                             Title = "BookName1",
                             GenreId = 1,
                             PageCount = 100,
@@ -26,7 +26,7 @@ namespace HelloWebAPI.DbOperations
                         },
                         new Book
                         {
-                            Id = 2,
+                            //Id = 2,
                             Title = "BookName2",
                             GenreId = 2,
                             PageCount = 200,
@@ -34,7 +34,7 @@ namespace HelloWebAPI.DbOperations
                         },
                         new Book
                         {
-                            Id = 3,
+                            //Id = 3,
                             Title = "BookName3",
                             GenreId = 2,
                             PageCount = 150,
