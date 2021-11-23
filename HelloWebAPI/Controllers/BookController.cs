@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HelloWebAPI.BookOperations.CreateBook;
+using HelloWebAPI.BookOperations.GetBooks;
+using HelloWebAPI.DbOperations;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using HelloWebAPI.DbOperations;
 
 namespace HelloWebAPI.Controllers
 {
@@ -16,32 +16,38 @@ namespace HelloWebAPI.Controllers
         {
             _context = context;
         }
-
+        //GetBooks
         [HttpGet]
-        public List<Book> GetBooks()
+        public IActionResult GetBooks()
         {
-            var bookList = _context.Books.OrderBy(book => book.Id).ToList<Book>();
-            return bookList;
+            GetBooksQuery query = new GetBooksQuery(_context);
+            var result = query.Handle();
+            return Ok(result);
         }
-
+        //GetBookById
         [HttpGet("{id}")]
         public Book GetById( int id )
         {
             var book = _context.Books.Where(book => book.Id == id).SingleOrDefault();
             return book;
         }
-
+        //CreateBook
         [HttpPost]
-        public IActionResult AddBook( [FromBody] Book newBook )
+        public IActionResult AddBook( [FromBody] CreateBookModel newBook )
         {
-            var book = _context.Books.SingleOrDefault(book => book.Title == newBook.Title);
-            if ( book is not null )
-                return BadRequest();
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+            CreateBookCommand command = new(_context);
+            try
+            {
+                command.Model = newBook;
+                command.Handle();
+            }
+            catch ( Exception ex )
+            {
+                return BadRequest(ex.Message);
+            }
             return Ok();
         }
-
+        //UpdateBook
         [HttpPut("{id}")]
         public IActionResult UpdateBook( int id, [FromBody] Book updateBook )
         {
@@ -57,7 +63,7 @@ namespace HelloWebAPI.Controllers
             _context.SaveChanges();
             return Ok();
         }
-
+        //DeleteBook
         [HttpDelete("{id}")]
         public IActionResult DeleteBook( int id )
         {

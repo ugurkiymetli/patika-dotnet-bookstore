@@ -18,27 +18,39 @@ namespace HelloWebAPI.DbOperations
                     (
                         new Book
                         {
-                            //Id = 1,
-                            Title = "BookName1",
+                            Title = "Lord of the Rings",
                             GenreId = 1,
-                            PageCount = 100,
-                            PublishDate = new DateTime(2001, 12, 12)
+                            PageCount = 1178,
+                            PublishDate = new DateTime(1954, 07, 29)
                         },
                         new Book
                         {
-                            //Id = 2,
-                            Title = "BookName2",
+                            Title = "It",
                             GenreId = 2,
-                            PageCount = 200,
-                            PublishDate = new DateTime(2005, 3, 2)
+                            PageCount = 1138,
+                            PublishDate = new DateTime(1986, 09, 13)
                         },
                         new Book
                         {
-                            //Id = 3,
-                            Title = "BookName3",
-                            GenreId = 2,
+                            Title = "1984",
+                            GenreId = 3,
+                            PageCount = 328,
+                            PublishDate = new DateTime(1949, 06, 08)
+                        },
+                        new Book
+                        {
+                            Title = "Batman",
+                            GenreId = 4,
                             PageCount = 150,
-                            PublishDate = new DateTime(1997, 11, 20)
+                            PublishDate = new DateTime(1939, 05, 01)
+                        },
+
+                        new Book
+                        {
+                            Title = "SPQR: A History of Ancient Rome",
+                            GenreId = 4,
+                            PageCount = 608,
+                            PublishDate = new DateTime(2016, 09, 06)
                         }
                     );
                 context.SaveChanges();
