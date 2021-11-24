@@ -5,6 +5,7 @@ using BookStoreWebAPI.BookOperations.GetBookDetail;
 using BookStoreWebAPI.BookOperations.GetBooks;
 using BookStoreWebAPI.BookOperations.UpdateBook;
 using BookStoreWebAPI.DbOperations;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -38,6 +39,8 @@ namespace BookStoreWebAPI.Controllers
             {
                 GetBookDetailQuery query = new(_context, _mapper);
                 query.BookId = id;
+                GetBookDetailQueryValidator validator = new();
+                validator.ValidateAndThrow(query);
                 result = query.Handle();
             }
             catch ( Exception ex )
@@ -54,7 +57,17 @@ namespace BookStoreWebAPI.Controllers
             try
             {
                 command.Model = newBook;
+                CreateBookCommandValidator validator = new();
+                validator.ValidateAndThrow(command);
                 command.Handle();
+                //ValidationResult result = validator.Validate(command);
+                //if ( !result.IsValid )
+                //    foreach ( var item in result.Errors )
+                //    {
+                //        Console.WriteLine("Property: " + item.PropertyName + " - Error Message: " + item.ErrorMessage);
+                //    }
+                //else
+                //    command.Handle();
             }
             catch ( Exception ex )
             {
@@ -72,6 +85,8 @@ namespace BookStoreWebAPI.Controllers
             {
                 command.Model = updatedBook;
                 command.BookId = id;
+                UpdateBookCommandValidator validator = new();
+                validator.ValidateAndThrow(command);
                 command.Handle();
             }
             catch ( Exception ex )
@@ -89,6 +104,8 @@ namespace BookStoreWebAPI.Controllers
             try
             {
                 command.BookId = id;
+                DeleteBookCommandValidator validator = new();
+                validator.ValidateAndThrow(command);
                 command.Handle();
             }
             catch ( Exception ex )
@@ -97,6 +114,5 @@ namespace BookStoreWebAPI.Controllers
             }
             return Ok();
         }
-
     }
 }
