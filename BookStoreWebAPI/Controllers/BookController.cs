@@ -60,26 +60,25 @@ namespace BookStoreWebAPI.Controllers
                 CreateBookCommandValidator validator = new();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                //ValidationResult result = validator.Validate(command);
-                //if ( !result.IsValid )
-                //    foreach ( var item in result.Errors )
-                //    {
-                //        Console.WriteLine("Property: " + item.PropertyName + " - Error Message: " + item.ErrorMessage);
-                //    }
-                //else
-                //    command.Handle();
             }
             catch ( Exception ex )
             {
                 return BadRequest(ex.Message);
             }
             return Ok();
+
+            /* CreateBookCommand command = new(_context, _mapper);
+             command.Model = newBook;
+             CreateBookCommandValidator validator = new();
+             validator.ValidateAndThrow(command);
+             command.Handle();
+             return Ok();*/
         }
         //UpdateBook
         [HttpPut("{id}")]
         public IActionResult UpdateBook( int id, [FromBody] UpdateBookModel updatedBook )
         {
-
+            //Middleware eklenmeden önceki kod yapısı
             UpdateBookCommand command = new(_context);
             try
             {
@@ -95,6 +94,16 @@ namespace BookStoreWebAPI.Controllers
             }
             return Ok();
 
+            //middleware eklediğimiz için yukarıdaki try catch yapısını kurmamıza gerek kalmıyor. 
+            /*UpdateBookCommand command = new(_context);
+            command.Model = updatedBook;
+            command.BookId = id;
+            UpdateBookCommandValidator validator = new();
+            //eğer bi hata oluşursa validator hatayı fırlatıyor,
+            //middleware yakalayıp gerekli hata mesajını, kodunu vs response içine yazıyor
+            validator.ValidateAndThrow(command);
+            command.Handle();
+            return Ok();*/
         }
         //DeleteBook
         [HttpDelete("{id}")]
