@@ -21,6 +21,11 @@ namespace BookStoreWebAPI.BookOperations.CreateBook
             var book = _context.Books.SingleOrDefault(book => book.Title == Model.Title);
             if ( book is not null )
                 throw new InvalidOperationException("This book already exists!!");
+
+            var genre = _context.Genres.SingleOrDefault(genre => genre.Id == Model.GenreId);
+            if ( genre == null )
+                throw new InvalidOperationException("Genre not found!");
+
             book = _mapper.Map<Book>(Model);
             _context.Books.Add(book);
             _context.SaveChanges();
