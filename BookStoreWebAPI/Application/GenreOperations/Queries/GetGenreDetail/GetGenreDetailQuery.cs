@@ -19,12 +19,12 @@ namespace BookStoreWebAPI.Application.GenreOperations.Queries.GetGenresDetail
 
         public GetGenreDetailModel Handle()
         {
-            var genre = _context.Genres.SingleOrDefault(book => book.IsActive && book.Id == GenreId);
+            var genre = _context.Genres.SingleOrDefault(genre => genre.IsActive && genre.Id == GenreId);
 
             if ( genre == null )
                 throw new InvalidOperationException("Genre not found!");
-
-            return _mapper.Map<GetGenreDetailModel>(genre);
+            GetGenreDetailModel getGenreDetailModel = _mapper.Map<GetGenreDetailModel>(genre);
+            return getGenreDetailModel;
         }
     }
 }

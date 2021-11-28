@@ -2,9 +2,9 @@
 using FluentValidation;
 namespace BookStoreWebAPI.Application.GenreOperations.Queries.GetGenreDetail
 {
-    public class CreateGenreCommandValidator : AbstractValidator<GetGenreDetailQuery>
+    public class GetGenreDetailQueryValidator : AbstractValidator<GetGenreDetailQuery>
     {
-        public CreateGenreCommandValidator()
+        public GetGenreDetailQueryValidator()
         {
             RuleFor(query => query.GenreId).GreaterThan(0);
         }

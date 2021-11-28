@@ -17,6 +17,7 @@ namespace BookStoreWebAPI.Controllers
     {
         private readonly BookStoreDBContext _context;
         private readonly IMapper _mapper;
+
         public BookController( BookStoreDBContext context, IMapper mapper )
         {
             _context = context;

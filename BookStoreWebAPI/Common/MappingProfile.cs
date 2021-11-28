@@ -15,6 +15,7 @@ namespace BookStoreWebAPI.Common
             CreateMap<CreateBookModel, Book>();
             CreateMap<Book, GetBookDetailModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ( ( GenreEnum )src.GenreId ).ToString()));
             CreateMap<Book, GetBookModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ( ( GenreEnum )src.GenreId ).ToString()));
+            CreateMap<Genre, GetGenreModel>();
             CreateMap<Genre, GetGenreDetailModel>();
         }
     }
