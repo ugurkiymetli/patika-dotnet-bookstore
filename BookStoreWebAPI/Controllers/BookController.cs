@@ -53,7 +53,7 @@ namespace BookStoreWebAPI.Controllers
         [HttpPost]
         public IActionResult AddBook( [FromBody] CreateBookModel newBook )
         {
-            CreateBookCommand command = new(_context, _mapper);
+            /*CreateBookCommand command = new(_context, _mapper);
             try
             {
                 command.Model = newBook;
@@ -65,14 +65,14 @@ namespace BookStoreWebAPI.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            return Ok();
+            return Ok();*/
 
-            /* CreateBookCommand command = new(_context, _mapper);
-             command.Model = newBook;
-             CreateBookCommandValidator validator = new();
-             validator.ValidateAndThrow(command);
-             command.Handle();
-             return Ok();*/
+            CreateGenreCommand command = new(_context, _mapper);
+            command.Model = newBook;
+            CreateBookCommandValidator validator = new();
+            validator.ValidateAndThrow(command);
+            command.Handle();
+            return Ok();
         }
         //UpdateBook
         [HttpPut("{id}")]

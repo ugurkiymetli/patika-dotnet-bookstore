@@ -1,4 +1,5 @@
 ﻿using BookStoreWebAPI.Controllers;
+using BookStoreWebAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,6 +15,29 @@ namespace BookStoreWebAPI.DbOperations
                 // Look for any book.
                 if ( context.Books.Any() )
                     return;// Data was already seeded
+                context.Genres.AddRange(
+                         new Genre
+                         {
+                             Name = "Science Fiction",
+                         },
+                         new Genre
+                         {
+                             Name = "Horror",
+                         },
+                         new Genre
+                         {
+                             Name = "Classics",
+                         },
+                         new Genre
+                         {
+                             Name = "Comic",
+                         },
+                         new Genre
+                         {
+                             Name = "History",
+                         }
+
+                 );
                 context.Books.AddRange
                     (
                         new Book

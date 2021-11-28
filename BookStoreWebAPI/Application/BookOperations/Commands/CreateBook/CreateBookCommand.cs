@@ -5,25 +5,25 @@ using System;
 using System.Linq;
 namespace BookStoreWebAPI.BookOperations.CreateBook
 {
-    public class CreateBookCommand
+    public class CreateGenreCommand
     {
         public CreateBookModel Model { get; set; }
-        private readonly BookStoreDBContext _dbContext;
+        private readonly BookStoreDBContext _context;
         private readonly IMapper _mapper;
 
-        public CreateBookCommand( BookStoreDBContext dbContext, IMapper mapper )
+        public CreateGenreCommand( BookStoreDBContext context, IMapper mapper )
         {
-            _dbContext = dbContext;
+            _context = context;
             _mapper = mapper;
         }
         public void Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(book => book.Title == Model.Title);
+            var book = _context.Books.SingleOrDefault(book => book.Title == Model.Title);
             if ( book is not null )
                 throw new InvalidOperationException("This book already exists!!");
             book = _mapper.Map<Book>(Model);
-            _dbContext.Books.Add(book);
-            _dbContext.SaveChanges();
+            _context.Books.Add(book);
+            _context.SaveChanges();
         }
     }
 }
