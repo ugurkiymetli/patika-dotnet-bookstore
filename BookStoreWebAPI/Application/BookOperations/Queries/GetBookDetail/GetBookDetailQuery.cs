@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BookStoreWebAPI.DbOperations;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace BookStoreWebAPI.BookOperations.GetBookDetail
         }
         public GetBookDetailModel Handle()
         {
-            var book = _dbContext.Books.Where(book => book.Id == BookId).SingleOrDefault();
+            var book = _dbContext.Books.Include(book => book.Genre).Where(book => book.Id == BookId).SingleOrDefault();
             if ( book is null )
                 throw new InvalidOperationException("This book is not found!!");
             GetBookDetailModel bookDetailModel = _mapper.Map<GetBookDetailModel>(book);

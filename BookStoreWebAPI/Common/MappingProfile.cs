@@ -13,8 +13,11 @@ namespace BookStoreWebAPI.Common
         public MappingProfile()
         {
             CreateMap<CreateBookModel, Book>();
-            CreateMap<Book, GetBookDetailModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ( ( GenreEnum )src.GenreId ).ToString()));
-            CreateMap<Book, GetBookModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ( ( GenreEnum )src.GenreId ).ToString()));
+            //mapping genre id to genre name using enum
+            //CreateMap<Book, GetBookModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ( ( GenreEnum )src.GenreId ).ToString()));
+            //CreateMap<Book, GetBookDetailModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ( ( GenreEnum )src.GenreId ).ToString()));
+            CreateMap<Book, GetBookModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Genre.Name));
+            CreateMap<Book, GetBookDetailModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Genre.Name));
             CreateMap<Genre, GetGenreModel>();
             CreateMap<Genre, GetGenreDetailModel>();
         }
