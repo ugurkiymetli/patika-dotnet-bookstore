@@ -23,8 +23,8 @@ namespace BookStoreWebAPI.Application.GenreOperations.Queries.GetGenresDetail
 
             if ( genre == null )
                 throw new InvalidOperationException("Genre not found!");
-            GetGenreDetailModel getGenreDetailModel = _mapper.Map<GetGenreDetailModel>(genre);
-            return getGenreDetailModel;
+            GetGenreDetailModel returnObj = _mapper.Map<GetGenreDetailModel>(genre);
+            return returnObj;
         }
     }
 }
