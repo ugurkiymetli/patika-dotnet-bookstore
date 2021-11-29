@@ -3,7 +3,7 @@ using System;
 
 namespace BookStoreWebAPI.BookOperations.CreateBook
 {
-    public class CreateBookCommandValidator : AbstractValidator<CreateGenreCommand>
+    public class CreateBookCommandValidator : AbstractValidator<CreateBookCommand>
     {
         public CreateBookCommandValidator()
         {

@@ -7,7 +7,6 @@ using BookStoreWebAPI.BookOperations.UpdateBook;
 using BookStoreWebAPI.DbOperations;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace BookStoreWebAPI.Controllers
 {
@@ -35,40 +34,18 @@ namespace BookStoreWebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById( int id )
         {
-            GetBookDetailQueryModel result;
-            try
-            {
-                GetBookDetailQuery query = new(_context, _mapper);
-                query.BookId = id;
-                GetBookDetailQueryValidator validator = new();
-                validator.ValidateAndThrow(query);
-                result = query.Handle();
-            }
-            catch ( Exception ex )
-            {
-                return BadRequest(ex.Message);
-            }
+            GetBookDetailQuery query = new(_context, _mapper);
+            query.BookId = id;
+            GetBookDetailQueryValidator validator = new();
+            validator.ValidateAndThrow(query);
+            var result = query.Handle();
             return Ok(result);
         }
         //CreateBook
         [HttpPost]
         public IActionResult AddBook( [FromBody] CreateBookCommandModel newBook )
         {
-            /*CreateBookCommand command = new(_context, _mapper);
-            try
-            {
-                command.Model = newBook;
-                CreateBookCommandValidator validator = new();
-                validator.ValidateAndThrow(command);
-                command.Handle();
-            }
-            catch ( Exception ex )
-            {
-                return BadRequest(ex.Message);
-            }
-            return Ok();*/
-
-            CreateGenreCommand command = new(_context, _mapper);
+            CreateBookCommand command = new(_context, _mapper);
             command.Model = newBook;
             CreateBookCommandValidator validator = new();
             validator.ValidateAndThrow(command);
@@ -79,29 +56,11 @@ namespace BookStoreWebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBook( int id, [FromBody] UpdateBookCommandModel updatedBook )
         {
-            /*//Middleware eklenmeden önceki kod yapısı
-            UpdateBookCommand command = new(_context);
-            try
-            {
-                command.Model = updatedBook;
-                command.BookId = id;
-                UpdateBookCommandValidator validator = new();
-                validator.ValidateAndThrow(command);
-                command.Handle();
-            }
-            catch ( Exception ex )
-            {
-                return BadRequest(ex.Message);
-            }
-            return Ok();
-*/
             //middleware eklediğimiz için yukarıdaki try catch yapısını kurmamıza gerek kalmıyor. 
             UpdateBookCommand command = new(_context);
             command.Model = updatedBook;
             command.BookId = id;
             UpdateBookCommandValidator validator = new();
-            //eğer bi hata oluşursa validator hatayı fırlatıyor,
-            //middleware yakalayıp gerekli hata mesajını, kodunu vs response içine yazıyor
             validator.ValidateAndThrow(command);
             command.Handle();
             return Ok();
@@ -111,17 +70,10 @@ namespace BookStoreWebAPI.Controllers
         public IActionResult DeleteBook( int id )
         {
             DeleteBookCommand command = new(_context);
-            try
-            {
-                command.BookId = id;
-                DeleteBookCommandValidator validator = new();
-                validator.ValidateAndThrow(command);
-                command.Handle();
-            }
-            catch ( Exception ex )
-            {
-                return BadRequest(ex.Message);
-            }
+            command.BookId = id;
+            DeleteBookCommandValidator validator = new();
+            validator.ValidateAndThrow(command);
+            command.Handle();
             return Ok();
         }
     }

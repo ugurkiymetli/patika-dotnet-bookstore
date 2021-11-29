@@ -5,13 +5,13 @@ using System;
 using System.Linq;
 namespace BookStoreWebAPI.BookOperations.CreateBook
 {
-    public class CreateGenreCommand
+    public class CreateBookCommand
     {
         public CreateBookCommandModel Model { get; set; }
         private readonly BookStoreDBContext _context;
         private readonly IMapper _mapper;
 
-        public CreateGenreCommand( BookStoreDBContext context, IMapper mapper )
+        public CreateBookCommand( BookStoreDBContext context, IMapper mapper )
         {
             _context = context;
             _mapper = mapper;
