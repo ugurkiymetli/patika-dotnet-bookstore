@@ -16,12 +16,12 @@ namespace BookStoreWebAPI.BookOperations.GetBookDetail
             _dbContext = dBContext;
             _mapper = mapper;
         }
-        public GetBookDetailModel Handle()
+        public GetBookDetailQueryModel Handle()
         {
-            var book = _dbContext.Books.Include(book => book.Genre).Where(book => book.Id == BookId).SingleOrDefault();
+            var book = _dbContext.Books.Include(book => book.Genre).Include(book => book.Author).Where(book => book.Id == BookId).SingleOrDefault();
             if ( book is null )
                 throw new InvalidOperationException("This book is not found!!");
-            GetBookDetailModel bookDetailModel = _mapper.Map<GetBookDetailModel>(book);
+            GetBookDetailQueryModel bookDetailModel = _mapper.Map<GetBookDetailQueryModel>(book);
             return bookDetailModel;
         }
     }

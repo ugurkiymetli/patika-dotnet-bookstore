@@ -7,7 +7,7 @@ namespace BookStoreWebAPI.BookOperations.CreateBook
 {
     public class CreateGenreCommand
     {
-        public CreateBookModel Model { get; set; }
+        public CreateBookCommandModel Model { get; set; }
         private readonly BookStoreDBContext _context;
         private readonly IMapper _mapper;
 

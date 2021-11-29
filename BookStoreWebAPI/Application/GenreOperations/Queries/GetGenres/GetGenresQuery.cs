@@ -16,7 +16,7 @@ namespace BookStoreWebAPI.Application.GenreOperations.Queries.GetGenres
         }
         public List<GetGenreModel> Handle()
         {
-            var genres = _context.Genres.Where(book => book.IsActive).OrderBy(book => book.Id);
+            var genres = _context.Genres.Where(genre => genre.IsActive).OrderBy(genre => genre.Id);
             List<GetGenreModel> returnObj = _mapper.Map<List<GetGenreModel>>(genres);
             return returnObj;
         }

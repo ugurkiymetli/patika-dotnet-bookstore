@@ -2,7 +2,7 @@
 
 namespace BookStoreWebAPI.BookOperations.CreateBook
 {
-    public class CreateBookModel
+    public class CreateBookCommandModel
     {
         public string Title { get; set; }
         public int GenreId { get; set; }

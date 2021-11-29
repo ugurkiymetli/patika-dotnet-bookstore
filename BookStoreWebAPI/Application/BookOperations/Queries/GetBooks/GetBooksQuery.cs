@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BookStoreWebAPI.Controllers;
 using BookStoreWebAPI.DbOperations;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -8,17 +7,17 @@ namespace BookStoreWebAPI.BookOperations.GetBooks
 {
     public class GetBooksQuery
     {
-        private readonly BookStoreDBContext _dbContext;
+        private readonly BookStoreDBContext _context;
         private readonly IMapper _mapper;
-        public GetBooksQuery( BookStoreDBContext dBContext, IMapper mapper )
+        public GetBooksQuery( BookStoreDBContext context, IMapper mapper )
         {
-            _dbContext = dBContext;
+            _context = context;
             _mapper = mapper;
         }
-        public List<GetBookModel> Handle()
+        public List<GetBooksQueryModel> Handle()
         {
-            var bookList = _dbContext.Books.Include(book => book.Genre).OrderBy(book => book.Id).ToList<Book>();
-            List<GetBookModel> bookViewModel = _mapper.Map<List<GetBookModel>>(bookList);
+            var bookList = _context.Books.Include(book => book.Genre).Include(book => book.Author).OrderBy(book => book.Id)/*.ToList<Book>()*/;
+            List<GetBooksQueryModel> bookViewModel = _mapper.Map<List<GetBooksQueryModel>>(bookList);
             return bookViewModel;
         }
     }

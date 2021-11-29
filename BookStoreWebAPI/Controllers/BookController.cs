@@ -35,7 +35,7 @@ namespace BookStoreWebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById( int id )
         {
-            GetBookDetailModel result;
+            GetBookDetailQueryModel result;
             try
             {
                 GetBookDetailQuery query = new(_context, _mapper);
@@ -52,7 +52,7 @@ namespace BookStoreWebAPI.Controllers
         }
         //CreateBook
         [HttpPost]
-        public IActionResult AddBook( [FromBody] CreateBookModel newBook )
+        public IActionResult AddBook( [FromBody] CreateBookCommandModel newBook )
         {
             /*CreateBookCommand command = new(_context, _mapper);
             try
@@ -77,7 +77,7 @@ namespace BookStoreWebAPI.Controllers
         }
         //UpdateBook
         [HttpPut("{id}")]
-        public IActionResult UpdateBook( int id, [FromBody] UpdateBookModel updatedBook )
+        public IActionResult UpdateBook( int id, [FromBody] UpdateBookCommandModel updatedBook )
         {
             //Middleware eklenmeden önceki kod yapısı
             UpdateBookCommand command = new(_context);
