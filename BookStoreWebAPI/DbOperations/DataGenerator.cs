@@ -107,7 +107,7 @@ namespace BookStoreWebAPI.DbOperations
                         new Book
                         {
                             Title = "SPQR: A History of Ancient Rome",
-                            GenreId = 4,
+                            GenreId = 5,
                             AuthorId = 5,
                             PageCount = 608,
                             PublishDate = new DateTime(2016, 09, 06)

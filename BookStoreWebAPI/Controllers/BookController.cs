@@ -79,7 +79,7 @@ namespace BookStoreWebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBook( int id, [FromBody] UpdateBookCommandModel updatedBook )
         {
-            //Middleware eklenmeden önceki kod yapısı
+            /*//Middleware eklenmeden önceki kod yapısı
             UpdateBookCommand command = new(_context);
             try
             {
@@ -94,9 +94,9 @@ namespace BookStoreWebAPI.Controllers
                 return BadRequest(ex.Message);
             }
             return Ok();
-
+*/
             //middleware eklediğimiz için yukarıdaki try catch yapısını kurmamıza gerek kalmıyor. 
-            /*UpdateBookCommand command = new(_context);
+            UpdateBookCommand command = new(_context);
             command.Model = updatedBook;
             command.BookId = id;
             UpdateBookCommandValidator validator = new();
@@ -104,7 +104,7 @@ namespace BookStoreWebAPI.Controllers
             //middleware yakalayıp gerekli hata mesajını, kodunu vs response içine yazıyor
             validator.ValidateAndThrow(command);
             command.Handle();
-            return Ok();*/
+            return Ok();
         }
         //DeleteBook
         [HttpDelete("{id}")]

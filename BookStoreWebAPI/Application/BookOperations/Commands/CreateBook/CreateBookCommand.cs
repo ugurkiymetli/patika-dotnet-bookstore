@@ -25,6 +25,9 @@ namespace BookStoreWebAPI.BookOperations.CreateBook
             var genre = _context.Genres.SingleOrDefault(genre => genre.Id == Model.GenreId);
             if ( genre == null )
                 throw new InvalidOperationException("Genre not found!");
+            var author = _context.Authors.SingleOrDefault(author => author.Id == Model.AuthorId);
+            if ( author == null )
+                throw new InvalidOperationException("Author not found!");
 
             book = _mapper.Map<Book>(Model);
             _context.Books.Add(book);

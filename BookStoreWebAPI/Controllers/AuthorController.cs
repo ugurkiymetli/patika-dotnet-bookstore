@@ -55,5 +55,31 @@ namespace BookStoreWebAPI.Controllers
             command.Handle();
             return Ok();
         }
+
+        //UpdateAuthor
+        [HttpPut("{id}")]
+        public IActionResult UpdateAuthor( int id, [FromBody] UpdateAuthorCommandModel updatedAuthor )
+        {
+            UpdateAuthorCommand command = new(_context);
+            command.Model = updatedAuthor;
+            command.AuthorId = id;
+            UpdateAuthorCommandValidator validator = new();
+            validator.ValidateAndThrow(command);
+            command.Handle();
+            return Ok();
+        }
+
+        //DeleteAuthor 
+        //Deletes Author but has to check if author has any active books.
+        [HttpDelete("{id}")]
+        public IActionResult DeleteAuthor( int id )
+        {
+            DeleteAuthorCommand command = new(_context, _mapper);
+            command.AuthorId = id;
+            DeleteAuthorCommandValidator validator = new();
+            validator.ValidateAndThrow(command);
+            command.Handle();
+            return Ok();
+        }
     }
 }
