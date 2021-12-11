@@ -1,5 +1,4 @@
-﻿using BookStoreWebAPI.Controllers;
-using BookStoreWebAPI.Entities;
+﻿using BookStoreWebAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,58 +15,18 @@ namespace BookStoreWebAPI.DbOperations
                 if ( context.Books.Any() )
                     return;// Data was already seeded
                 context.Authors.AddRange(
-                        new Author
-                        {
-                            Name = "J. R. R.",
-                            Surname = "Tolkien",
-                            BirthDate = new DateTime(1892, 01, 03)
-                        },
-                        new Author
-                        {
-                            Name = "Stephen",
-                            Surname = "King",
-                            BirthDate = new DateTime(1947, 09, 21)
-                        },
-                        new Author
-                        {
-                            Name = "George",
-                            Surname = "Orwell",
-                            BirthDate = new DateTime(1943, 06, 25)
-                        },
-                        new Author
-                        {
-                            Name = "Robert",
-                            Surname = "Kahn",
-                            BirthDate = new DateTime(1915, 10, 24)
-                        },
-                        new Author
-                        {
-                            Name = "Mary",
-                            Surname = "Beard",
-                            BirthDate = new DateTime(1955, 01, 01)
-                        }
+                    new Author { Name = "J. R. R.", Surname = "Tolkien", BirthDate = new DateTime(1892, 01, 03) },
+                    new Author { Name = "Stephen", Surname = "King", BirthDate = new DateTime(1947, 09, 21) },
+                    new Author { Name = "George", Surname = "Orwell", BirthDate = new DateTime(1943, 06, 25) },
+                    new Author { Name = "Robert", Surname = "Kahn", BirthDate = new DateTime(1915, 10, 24) },
+                    new Author { Name = "Mary", Surname = "Beard", BirthDate = new DateTime(1955, 01, 01) }
                     );
                 context.Genres.AddRange(
-                         new Genre
-                         {
-                             Name = "Science Fiction",
-                         },
-                         new Genre
-                         {
-                             Name = "Horror",
-                         },
-                         new Genre
-                         {
-                             Name = "Classics",
-                         },
-                         new Genre
-                         {
-                             Name = "Comic",
-                         },
-                         new Genre
-                         {
-                             Name = "History",
-                         }
+                         new Genre { Name = "Science Fiction" },
+                         new Genre { Name = "Horror" },
+                         new Genre { Name = "Classics" },
+                         new Genre { Name = "Comic" },
+                         new Genre { Name = "History" }
                  );
                 context.Books.AddRange
                     (
@@ -103,7 +62,6 @@ namespace BookStoreWebAPI.DbOperations
                             PageCount = 150,
                             PublishDate = new DateTime(1939, 05, 01)
                         },
-
                         new Book
                         {
                             Title = "SPQR: A History of Ancient Rome",

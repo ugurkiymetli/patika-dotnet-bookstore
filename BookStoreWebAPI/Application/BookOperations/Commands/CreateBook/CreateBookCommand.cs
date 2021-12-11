@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BookStoreWebAPI.Controllers;
 using BookStoreWebAPI.DbOperations;
+using BookStoreWebAPI.Entities;
 using System;
 using System.Linq;
 namespace BookStoreWebAPI.BookOperations.CreateBook

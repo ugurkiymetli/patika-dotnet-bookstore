@@ -1,10 +1,9 @@
-﻿using BookStoreWebAPI.Entities;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookStoreWebAPI.Controllers
-{
+namespace BookStoreWebAPI.Entities
 
+{
     public class Book
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
