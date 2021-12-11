@@ -7,10 +7,10 @@ namespace BookStoreWebAPI.Application.AuthorOperations.Commands.CreateAuthorComm
     {
 
         public UpdateAuthorCommandModel Model { get; set; }
-        private readonly BookStoreDBContext _context;
+        private readonly IBookStoreDBContext _context;
         public int AuthorId { get; set; }
 
-        public UpdateAuthorCommand( BookStoreDBContext context )
+        public UpdateAuthorCommand( IBookStoreDBContext context )
         {
             _context = context;
         }

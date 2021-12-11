@@ -7,9 +7,9 @@ namespace BookStoreWebAPI.BookOperations.GetBooks
 {
     public class GetBooksQuery
     {
-        private readonly BookStoreDBContext _context;
+        private readonly IBookStoreDBContext _context;
         private readonly IMapper _mapper;
-        public GetBooksQuery( BookStoreDBContext context, IMapper mapper )
+        public GetBooksQuery( IBookStoreDBContext context, IMapper mapper )
         {
             _context = context;
             _mapper = mapper;

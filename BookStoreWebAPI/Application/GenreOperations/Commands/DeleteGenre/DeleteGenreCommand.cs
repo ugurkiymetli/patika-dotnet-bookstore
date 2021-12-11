@@ -6,9 +6,9 @@ namespace BookStoreWebAPI.Application.GenreOperations.Commands.DeleteGenre
     public class DeleteGenreCommand
 
     {
-        private readonly BookStoreDBContext _context;
+        private readonly IBookStoreDBContext _context;
         public int GenreId { get; set; }
-        public DeleteGenreCommand( BookStoreDBContext context )
+        public DeleteGenreCommand( IBookStoreDBContext context )
         {
             _context = context;
         }
@@ -18,7 +18,7 @@ namespace BookStoreWebAPI.Application.GenreOperations.Commands.DeleteGenre
             var genre = _context.Genres.SingleOrDefault(genre => genre.Id == GenreId);
             if ( genre == null )
                 throw new InvalidOperationException("This genre is not found!!");
-            _context.Remove(genre);
+            _context.Genres.Remove(genre);
             _context.SaveChanges();
         }
 

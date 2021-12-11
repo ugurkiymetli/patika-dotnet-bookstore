@@ -8,10 +8,10 @@ namespace BookStoreWebAPI.Application.AuthorOperations.Queries.GetAuthorsQuery
 {
     public class GetAuthorsQuery
     {
-        private readonly BookStoreDBContext _context;
+        private readonly IBookStoreDBContext _context;
         private readonly IMapper _mapper;
 
-        public GetAuthorsQuery( BookStoreDBContext context, IMapper mapper )
+        public GetAuthorsQuery( IBookStoreDBContext context, IMapper mapper )
         {
             _context = context;
             _mapper = mapper;

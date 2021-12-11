@@ -12,10 +12,10 @@ namespace BookStoreWebAPI.Controllers
     [ApiController]
     public class AuthorController : ControllerBase
     {
-        private readonly BookStoreDBContext _context;
+        private readonly IBookStoreDBContext _context;
         private readonly IMapper _mapper;
 
-        public AuthorController( IMapper mapper, BookStoreDBContext context )
+        public AuthorController( IMapper mapper, IBookStoreDBContext context )
         {
             _mapper = mapper;
             _context = context;

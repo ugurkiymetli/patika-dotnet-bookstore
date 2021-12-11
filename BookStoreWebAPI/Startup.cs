@@ -32,6 +32,8 @@ namespace BookStoreWebAPI
             });
             //Adding DbContext as a service to run on startup
             services.AddDbContext<BookStoreDBContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
+            //Adding DBContext Interface as Dependency Injection
+            services.AddScoped<IBookStoreDBContext>(provider => provider.GetService<BookStoreDBContext>());
             //Adding AutoMapper as a service to run on startup
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             //Adding ILoggerService as a service to run on startup (using dependency injection)

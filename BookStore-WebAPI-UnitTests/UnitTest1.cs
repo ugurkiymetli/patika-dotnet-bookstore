@@ -9,10 +9,5 @@ namespace BookStore_WebAPI_UnitTests
         {
 
         }
-        [Fact]
-        public void Test2()
-        {
-
-        }
     }
 }
